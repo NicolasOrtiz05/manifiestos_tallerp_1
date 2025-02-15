@@ -5,7 +5,7 @@ metadata:
   labels:
     app: backend
 spec:
-  replicas: 1  # Mantén 2 réplicas para alta disponibilidad
+  replicas: 1  # Puedes dejarlo en 1, el HPA manejará la escala
   selector:
     matchLabels:
       app: backend
@@ -26,11 +26,19 @@ spec:
             value: "root"
           - name: SPRING_DATASOURCE_PASSWORD
             value: "root"
-        
+
+        # 💡 Agrega estos valores aquí para que el HPA pueda monitorear el uso de CPU
+        resources:
+          requests:
+            cpu: "50m"   # El pod solicitará al menos 50 millicores
+          limits:
+            cpu: "250m"  # No podrá usar más de 250 millicores
+
         startupProbe:
           httpGet:
             path: /api/datos
             port: 8080
-          initialDelaySeconds: 25
-          periodSeconds: 10
-          failureThreshold: 3
+          initialDelaySeconds: 60 
+          timeoutSeconds: 10        
+          periodSeconds: 20       
+          failureThreshold: 6      
