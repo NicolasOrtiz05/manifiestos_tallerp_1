@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  labels:
+    app: backend
+spec:
+  replicas: 1  # Mantén 2 réplicas para alta disponibilidad
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: nicolasortiz05/back-taller:1.1  # Verifica que la imagen esté en Docker Hub
+        ports:
+          - containerPort: 8080
+        env:
+          - name: SPRING_DATASOURCE_URL
+            value: "jdbc:mysql://mysql-service:3306/mydb"
+          - name: SPRING_DATASOURCE_USERNAME
+            value: "root"
+          - name: SPRING_DATASOURCE_PASSWORD
+            value: "root"
+        
+        startupProbe:
+          httpGet:
+            path: /api/datos
+            port: 8080
+          initialDelaySeconds: 25
+          periodSeconds: 10
+          failureThreshold: 3

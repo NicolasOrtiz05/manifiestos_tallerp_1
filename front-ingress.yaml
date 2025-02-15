@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: front-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: "patronestall.duckdns.org"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: front-service
+                port:
+                  number: 80
+          - pathType: Prefix
+            path: "/api/datos"
+            backend:
+              service:
+                name: app-service 
+                port:
+                  number: 8080
