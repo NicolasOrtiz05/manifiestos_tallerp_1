@@ -19,3 +19,9 @@ spec:
         image: nicolasortiz05/front-taller:1.5
         ports:
           - containerPort: 80
+
+      resources:
+        requests:
+          cpu: "50m"
+        limits:
+          cpu: "250m"
