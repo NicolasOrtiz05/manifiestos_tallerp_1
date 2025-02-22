@@ -1,0 +1,1 @@
+"app={{ .Values.appName }}" --namespace {{ .Values.namespace}}

@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: front
-        image: nicolasortiz05/front-taller:1.5
+        image: nicolasortiz05/front-taller:1.6
         ports:
           - containerPort: 80
 

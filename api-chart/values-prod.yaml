@@ -1,0 +1,9 @@
+namespace: produccion
+appName: myapihelm-prod
+
+replicaCount: 2
+
+hpa:
+  minReplicas: 2
+  maxReplicas: 5
+  cpuUtilization: 75

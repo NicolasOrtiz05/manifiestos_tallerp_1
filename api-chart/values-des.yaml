@@ -1,0 +1,9 @@
+namespace: desarrollo
+appName: myapihelm-dev
+
+replicaCount: 1
+
+hpa:
+  minReplicas: 1
+  maxReplicas: 3
+  cpuUtilization: 75

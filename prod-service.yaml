@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapihelm-prod-external
+  namespace: default
+spec:
+  type: ExternalName
+  externalName: myapihelm-prod.produccion.svc.cluster.local

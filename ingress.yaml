@@ -2,10 +2,13 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress
+  namespace: default
 spec:
   ingressClassName: nginx
   rules:
-    - host: "patroness.duckdns.org"
+    -
+    # 🔹 Reglas para Desarrollo
+    - host: "devpatrones.duckdns.org"
       http:
         paths:
           - pathType: Prefix
@@ -19,6 +22,25 @@ spec:
             path: "/api/datos"
             backend:
               service:
-                name: api-service
+                name: myapihelm-dev-external
+                port:
+                  number: 8080
+
+    # 🔹 Reglas para Producción
+    - host: "patrones.duckdns.org"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: front-service
+                port:
+                  number: 80
+          - pathType: Prefix
+            path: "/api/datos"
+            backend:
+              service:
+                name: myapihelm-prod-external
                 port:
                   number: 8080

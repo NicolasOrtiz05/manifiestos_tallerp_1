@@ -15,19 +15,19 @@ spec:
         app: mysql
     spec:
       containers:
-      - name: mysql
-        image: mysql:8.0
-        env:
-          - name: MYSQL_ROOT_PASSWORD
-            value: "root"
-          - name: MYSQL_DATABASE
-            value: "mydb"
-        ports:
-          - containerPort: 3306
-        volumeMounts:
-          - name: mysql-storage
-            mountPath: /var/lib/mysql  # Guarda los datos en este volumen
+        - name: mysql
+          image: mysql:8.0
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "root"
+            - name: MYSQL_DATABASE
+              value: "mydb"
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: mysql-storage
+              mountPath: /var/lib/mysql
       volumes:
         - name: mysql-storage
           persistentVolumeClaim:
-            claimName: mysql-pvc  # Se conecta al PVC
+            claimName: mysql-pvc

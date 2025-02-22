@@ -1,0 +1,20 @@
+appName: myapihelm
+namespace: default
+
+image:
+  name: nicolasortiz05/back-taller
+  tag: latest
+
+replicaCount: 2
+
+hpa:
+  minReplicas: 2
+  maxReplicas: 5
+  cpuUtilization: 75
+
+database:
+  host: "mysql-service.default.svc.cluster.local"
+  port: 3306
+  name: "mydb"
+  username: "root"
+  password: "root"
