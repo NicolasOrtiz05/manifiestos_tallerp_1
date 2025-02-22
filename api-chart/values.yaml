@@ -1,0 +1,6 @@
+appName: myapihelm
+namespace: default
+  
+image:
+  name: nicolasortiz05/back-taller
+  tag: latest
