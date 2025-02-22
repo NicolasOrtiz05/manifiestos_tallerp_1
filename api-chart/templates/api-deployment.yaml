@@ -23,11 +23,11 @@ spec:
             - containerPort: 8080
           env:
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:mysql://mysql-service.default.svc.cluster.local:3306/mydb"
+              value: "jdbc:mysql://{{ .Values.database.host }}:{{ .Values.database.port }}/{{ .Values.database.name }}"
             - name: SPRING_DATASOURCE_USERNAME
-              value: "root"
+              value: "{{ .Values.database.username }}"
             - name: SPRING_DATASOURCE_PASSWORD
-              value: "root"
+              value: "{{ .Values.database.password }}"
           resources:
             requests:
               cpu: "50m"

@@ -11,3 +11,10 @@ hpa:
   minReplicas: 2
   maxReplicas: 5
   cpuUtilization: 75
+
+database:
+  host: "mysql-service.default.svc.cluster.local"
+  port: 3306
+  name: "mydb"
+  username: "root"
+  password: "root"
